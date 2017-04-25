@@ -3,7 +3,8 @@
   (:require [jdbc.core :as jdbc]
             [clojure-postgres-test.jdbc]
             [clojure-postgres-test.honeysql :as h]
-            [clojure-postgres-test.sqlingvo :as s]))
+            [clojure-postgres-test.sqlingvo :as s]
+            [clojure-postgres-test.korma :as k]))
 
 (def dbspec (System/getenv "POSTGRES_URL"))
 (def fields [:_id :date :analyzed-date :meta :topics])
@@ -34,5 +35,9 @@
   (print-query-and-execute (s/get-articles-query 1 0 fields))
   (print-query-and-execute (s/get-articles-from-topic-query "539b36d6e4b05b66e1c47661" 1 0 fields))
   (println)
+
+  (println "korma")
+  (print-query-and-execute (k/get-articles-query 1 0 fields))
+  ; (print-query-and-execute (k/get-articles-from-topic-query "539b36d6e4b05b66e1c47661" 1 0 fields))
 
   (println "Done!"))

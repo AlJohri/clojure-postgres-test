@@ -1,3 +1,5 @@
+; https://github.com/jkk/honeysql/
+
 (ns clojure-postgres-test.honeysql
   (:gen-class)
   (:require [honeysql.core :as sql]
