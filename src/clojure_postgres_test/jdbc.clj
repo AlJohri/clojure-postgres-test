@@ -1,7 +1,10 @@
-(ns clojure-postgres-test.postgres
+(ns clojure-postgres-test.jdbc
+  (:gen-class)
   (:require [jdbc.proto :as proto]
             [cheshire.core :as json])
   (:import [org.postgresql.util PGobject]))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; ISQLType handles a conversion from user type to jdbc compatible
 ;; types. In this case we are extending any implementation of clojure
@@ -33,3 +36,5 @@
         "json" (json/parse-string value)
         "jsonb" (json/parse-string value)
         :else value))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
