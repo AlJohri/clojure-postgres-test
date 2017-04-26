@@ -6,7 +6,13 @@
             [clojure-postgres-test.sqlingvo :as s]
             [clojure-postgres-test.korma :as k]))
 
-(def dbspec (System/getenv "POSTGRES_URL"))
+(defn get-env-var [x]
+  (let [result (System/getenv x)]
+    (if (nil? result)
+      (throw (Exception. (str "Environment variable: " x " not set. Aborting")))
+      result)))
+
+(def dbspec (get-env-var "POSTGRES_URL"))
 (def fields [:_id :date :analyzed-date :meta :topics])
 
 (defn execute-query-and-print-result [conn sql]
