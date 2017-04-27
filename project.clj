@@ -10,7 +10,7 @@
     [funcool/clojure.jdbc "0.9.0"]
     [korma "0.4.3"]
     [honeysql "0.8.2"]
-    [sqlingvo "0.9.4-SNAPSHOT"]]
+    [sqlingvo "0.9.5-SNAPSHOT"]]
   :main ^:skip-aot clojure-postgres-test.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})

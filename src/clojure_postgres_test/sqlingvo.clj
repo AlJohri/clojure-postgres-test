@@ -17,10 +17,17 @@
 ;     (from :films)
 ;     (where `(= :kind ~kind))))
 
-(def my-db (db :postgresql {:sql-name sql-name-underscore}))
+(defn underscore [s]
+  (cond
+    (keyword? s)
+    (str/replace (name s) "-" "_")
+    (string? s)
+    s))
+
+(def my-db (db :postgresql {:sql-name underscore}))
 
 (defn get-articles-querymap [lim off fields]
-  (select my-db (map #(as `(-> :original ~(clojure.core/name %)) %) fields)
+  (select my-db (map #(as `(-> :original ~(clojure.core/name %)) (clojure.core/name %)) fields)
     (from (as :articles :a))
     (limit lim)
     (offset off)))
